@@ -47,7 +47,7 @@ describe("HttpError", function() {
   })
 
   describe(".prototype.toString", function() {
-    it("must return both code and message", function() {
+    it("must return code and message", function() {
       new HttpError(404, "Dunno").toString().must.equal("HttpError: 404 Dunno")
     })
 
