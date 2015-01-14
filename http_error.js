@@ -1,5 +1,5 @@
-var _ = require("overstrike")
 var StandardError = require("standard-error")
+var assign = require("objectware").assign
 var STATUS_CODE_TO_NAME = require("http").STATUS_CODES
 var STATUS_NAME_TO_CODE = require("http-codes")
 module.exports = HttpError
@@ -14,7 +14,7 @@ HttpError.prototype = Object.create(StandardError.prototype, {
   constructor: {value: HttpError, configurable: true, writable: true}
 })
 
-_.assign(HttpError, STATUS_NAME_TO_CODE)
+assign(HttpError, STATUS_NAME_TO_CODE)
 
 HttpError.prototype.toString = function() {
   return this.name + ": " + this.code + " " + this.message
