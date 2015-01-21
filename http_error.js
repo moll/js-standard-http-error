@@ -7,7 +7,8 @@ module.exports = HttpError
 function HttpError(code, msg) {
   if (typeof code == "string") code = STATUS_NAME_TO_CODE[code]
   if (typeof code != "number") throw new TypeError("Non-numeric HTTP code")
-  StandardError.call(this, msg || STATUS_CODE_TO_NAME[code], {code: code})
+  StandardError.call(this, msg || STATUS_CODE_TO_NAME[code])
+  this.code = code
 }
 
 HttpError.prototype = Object.create(StandardError.prototype, {
