@@ -54,6 +54,20 @@ describe("HttpError", function() {
       new RemoteError(400).name.must.equal("RemoteError")
     })
 
+    it("must set code, message and properties", function() {
+      var err = new RemoteError(404, "Dunno", {url: "/dunno"})
+      err.code.must.equal(404)
+      err.message.must.equal("Dunno")
+      err.url.must.equal("/dunno")
+    })
+
+    it("must set code and properties", function() {
+      var err = new RemoteError(404, {url: "/dunno"})
+      err.code.must.equal(404)
+      err.message.must.equal("Not Found")
+      err.url.must.equal("/dunno")
+    })
+
     it("must set stack", function() {
       var stack = new HttpError(400).stack.split(/\n\s*/)
       stack[0].must.equal("HttpError: Bad Request")
