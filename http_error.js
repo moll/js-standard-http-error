@@ -12,7 +12,7 @@ function HttpError(code, msg, props) {
   this.code = code
 }
 
-HttpError.prototype = Object.create(StandardError.prototype, {
+HttpError.prototype = Object.create(Error.prototype, {
   constructor: {value: HttpError, configurable: true, writable: true}
 })
 
