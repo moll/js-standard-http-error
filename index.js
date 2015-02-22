@@ -18,9 +18,19 @@ HttpError.prototype = Object.create(Error.prototype, {
 assign(HttpError, STATUS_NAME_TO_CODE)
 
 Object.defineProperties(HttpError.prototype, {
-  status: alias("code", "status"),
-  statusCode: alias("code", "statusCode"),
-  statusMessage: alias("message", "statusMessage")
+  statusCode: alias("code"),
+  statusMessage: alias("message"),
+
+  status: {
+    configurable: true,
+    get: function() { return this.code },
+
+    set: function(value) {
+      Object.defineProperty(this, "status", {
+        value: value, configurable: true, enumerable: true, writable: true
+      })
+    }
+  }
 })
 
 HttpError.prototype.toString = function() {
@@ -32,15 +42,10 @@ function assign(target, source) {
   return target
 }
 
-function alias(name, target) {
+function alias(name) {
   return {
     configurable: true,
     get: function() { return this[name] },
-
-    set: function(value) {
-      Object.defineProperty(this, target, {
-        value: value, configurable: true, enumerable: true, writable: true
-      })
-    }
+    set: function(value) { return this[name] = value },
   }
 }

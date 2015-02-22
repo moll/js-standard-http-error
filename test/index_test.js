@@ -82,6 +82,32 @@ describe("HttpError", function() {
     })
   })
 
+  describe(".prototype.statusCode", function() {
+    it("must be an alias to code", function() {
+      var err = new HttpError(404)
+      err.statusCode.must.equal(404)
+      err.statusCode = 500
+      err.code.must.equal(500)
+    })
+
+    it("must be non-enumerable", function() {
+      new HttpError(412).must.have.nonenumerable("statusCode")
+    })
+  })
+
+  describe(".prototype.statusMessage", function() {
+    it("must be an alias to message", function() {
+      var err = new HttpError(412, "Bad CSRF Token")
+      err.statusMessage.must.equal("Bad CSRF Token")
+      err.statusMessage = "Awful CSRF Token"
+      err.message.must.equal("Awful CSRF Token")
+    })
+
+    it("must be non-enumerable", function() {
+      new HttpError(412).must.have.nonenumerable("statusMessage")
+    })
+  })
+
   describe(".prototype.status", function() {
     it("must be an alias to code", function() {
       new HttpError(404).status.must.equal(404)
@@ -92,42 +118,15 @@ describe("HttpError", function() {
     })
 
     it("must be overwritable", function() {
-      var err = new HttpError(404, {status: "OK"})
-      err.must.have.enumerable("status")
+      var err = new HttpError(404)
+      err.status = "OK"
+      err.code.must.equal(404)
+
       err.status.must.equal("OK")
-    })
-  })
-
-  describe(".prototype.statusCode", function() {
-    it("must be an alias to code", function() {
-      new HttpError(404).statusCode.must.equal(404)
-    })
-
-    it("must be non-enumerable", function() {
-      new HttpError(412).must.have.nonenumerable("statusCode")
-    })
-
-    it("must be overwritable", function() {
-      var err = new HttpError(404, {statusCode: "OK"})
-      err.must.have.enumerable("statusCode")
-      err.statusCode.must.equal("OK")
-    })
-  })
-
-  describe(".prototype.statusMessage", function() {
-    it("must be an alias to message", function() {
-      var err = new HttpError(412, "Bad CSRF Token")
-      err.statusMessage.must.equal("Bad CSRF Token")
-    })
-
-    it("must be non-enumerable", function() {
-      new HttpError(412).must.have.nonenumerable("statusMessage")
-    })
-
-    it("must be overwritable", function() {
-      var err = new HttpError(404, {statusMessage: "OK"})
-      err.must.have.enumerable("statusMessage")
-      err.statusMessage.must.equal("OK")
+      var desc = Object.getOwnPropertyDescriptor(err, "status")
+      desc.configurable.must.be.true()
+      desc.writable.must.be.true()
+      desc.enumerable.must.be.true()
     })
   })
 
