@@ -41,8 +41,7 @@ message  | `"Not Found"`
 
 As always for errors, the non-enumerable `stack` property is there as well.
 
-For compatibility with Express.js's default request handler
-([finalhandler](https://www.npmjs.com/package/finalhandler) — the one that
+For compatibility with Express.js or Koa's default request handler (the one that
 prints your errors out if you don't handle them), StandardHttpError.js also sets
 `status`, `statusCode` and `statusMessage` to be aliases of `code` and
 `message`. They're non-enumerable to not pollute serialization.
