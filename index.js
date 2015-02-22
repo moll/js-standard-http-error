@@ -24,7 +24,6 @@ Object.defineProperties(HttpError.prototype, {
   status: {
     configurable: true,
     get: function() { return this.code },
-
     set: function(value) {
       Object.defineProperty(this, "status", {
         value: value, configurable: true, enumerable: true, writable: true
