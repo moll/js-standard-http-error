@@ -41,7 +41,7 @@ message  | `"Not Found"`
 
 As always for errors, the non-enumerable `stack` property is there as well.
 
-For compatibility with Express.js or Koa's default request handler (the one that
+For compatibility with Express or Koa's default request handler (the one that
 prints your errors out if you don't handle them), StandardHttpError.js also sets
 `status`, `statusCode` and `statusMessage` to be aliases of `code` and
 `message`. They're non-enumerable to not pollute serialization.
@@ -119,9 +119,9 @@ switch (err.code) {
 }
 ```
 
-### Using with Express.js
-StandardHttpError.js comes very handy when used with Connect.js/Express.js's
-error handling functionality:
+### Using with Express
+StandardHttpError.js comes very handy when used with Connect/Express's error
+handling functionality:
 
 ```javascript
 var HttpError = require("standard-http-error")
