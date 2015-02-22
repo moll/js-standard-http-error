@@ -1,0 +1,38 @@
+{
+	"name": "standard-http-error",
+	"version": "0.0.0",
+	"description": "",
+	"keywords": [],
+	"homepage": "https://github.com/moll/node-standard-http-error",
+	"bugs": "https://github.com/moll/node-standard-http-error/issues",
+
+	"author": {
+		"name": "Andri Möll",
+		"email": "andri@dot.ee",
+		"url": "http://themoll.com"
+	},
+
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/moll/node-standard-http-error.git"
+	},
+
+	"licenses": [{
+		"type": "LAGPL",
+		"url": "https://github.com/moll/node-standard-http-error/blob/master/LICENSE"
+	}],
+
+	"main": "index.js",
+	"scripts": {"test": "make test"},
+
+	"dependencies": {
+		"http-codes": ">= 1.0.0 < 2",
+		"objectware": ">= 1.6.0 < 2",
+		"standard-error": ">= 1.1.0 < 2"
+	},
+
+	"devDependencies": {
+		"mocha": ">= 2.1.0 < 3",
+		"must": ">= 0.12.0 < 0.13"
+	}
+}

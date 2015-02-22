@@ -1,4 +1,4 @@
-var _ = require("lodash")
+var Ow = require("objectware")
 var STATUS_NAMES = require("http-codes")
 var HttpError = require("..")
 
@@ -71,14 +71,14 @@ describe("HttpError", function() {
     it("must set stack", function() {
       var stack = new HttpError(400).stack.split(/\n\s*/)
       stack[0].must.equal("HttpError: Bad Request")
-      stack[1].must.include("http_error_test.js")
+      stack[1].must.include("index_test.js")
     })
 
     it("must set stack from constructor", function() {
       var stack = new RemoteError(400).stack.split(/\n\s*/)
       stack[0].must.equal("RemoteError: Bad Request")
-      stack[1].must.include("http_error_test.js")
-      stack[2].must.not.include("http_error_test.js")
+      stack[1].must.include("index_test.js")
+      stack[2].must.not.include("index_test.js")
     })
   })
 
@@ -99,7 +99,7 @@ describe("HttpError", function() {
     STATUS_NAMES.must.have.property("NOT_FOUND", 404)
     STATUS_NAMES.must.have.property("INTERNAL_SERVER_ERROR", 500)
 
-    _.each(STATUS_NAMES, function(code, constant) {
+    Ow.each(STATUS_NAMES, function(code, constant) {
       it("must have " + constant + " equal " + code, function() {
         HttpError[constant].must.equal(code)
       })
