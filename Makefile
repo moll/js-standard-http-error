@@ -19,6 +19,12 @@ autospec:
 pack:
 	@file=$$(npm pack); echo "$$file"; tar tf "$$file"
 
+constants:
+	@node -e '\
+		var ERRORS = require("./"); \
+		for (var name in ERRORS) console.log("`%d` | `%s`", ERRORS[name], name) \
+	'
+
 publish:
 	npm publish
 
