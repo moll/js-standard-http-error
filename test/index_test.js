@@ -18,16 +18,16 @@ describe("HttpError", function() {
       new HttpError(404).code.must.equal(404)
     })
 
-    it("must set code from constant name", function() {
-      new HttpError("NOT_FOUND").code.must.equal(404)
-    })
-
     it("must throw TypeError given undefined code", function() {
       !function() { new HttpError(undefined) }.must.throw(TypeError, /HTTP/)
     })
 
     it("must throw TypeError given null code", function() {
       !function() { new HttpError(null) }.must.throw(TypeError, /HTTP/)
+    })
+
+    it("must set code from constant name", function() {
+      new HttpError("NOT_FOUND").code.must.equal(404)
     })
 
     it("must throw TypeError given unknown constant", function() {
