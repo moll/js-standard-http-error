@@ -3,7 +3,7 @@ StandardHttpError.js
 [![NPM version][npm-badge]](http://badge.fury.io/js/standard-http-error)
 [npm-badge]: https://badge.fury.io/js/standard-http-error.png
 
-**StandardHttpError.js** is a very simple but useful **Error** class for
+**StandardHttpError.js** is a very simple but useful **error class** for
 JavaScript and Node.js that represents HTTP errors. You can then detect it with
 `instanceof` in error handling middleware and act accordingly.
 
