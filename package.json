@@ -8,8 +8,8 @@
 		"http",
     "exception"
 	],
-	"homepage": "https://github.com/moll/node-standard-http-error",
-	"bugs": "https://github.com/moll/node-standard-http-error/issues",
+	"homepage": "https://github.com/moll/js-standard-http-error",
+	"bugs": "https://github.com/moll/js-standard-http-error/issues",
 
 	"author": {
 		"name": "Andri Möll",
@@ -19,12 +19,12 @@
 
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/moll/node-standard-http-error.git"
+		"url": "git://github.com/moll/js-standard-http-error.git"
 	},
 
 	"licenses": [{
 		"type": "LAGPL",
-		"url": "https://github.com/moll/node-standard-http-error/blob/master/LICENSE"
+		"url": "https://github.com/moll/js-standard-http-error/blob/master/LICENSE"
 	}],
 
 	"main": "index.js",

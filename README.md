@@ -241,6 +241,6 @@ If you find StandardHttpError.js needs improving, please don't hesitate to type
 to me now at [andri@dot.ee][email] or [create an issue online][issues].
 
 [email]: mailto:andri@dot.ee
-[issues]: https://github.com/moll/node-standard-http-error/issues
+[issues]: https://github.com/moll/js-standard-http-error/issues
 [moll]: http://themoll.com
 [monday]: https://mondayapp.com
