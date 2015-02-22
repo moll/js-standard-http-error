@@ -7,6 +7,10 @@ StandardHttpError.js
 that represents HTTP errors. You can then detect it with `instanceof` in error
 handling middleware and act accordingly.
 
+You can use StandardHttpError.js with any error code you like, standardized or
+not. They don't have to exist beforehand, so if you're living on the cutting
+edge, feel free to use `new HttpError(451, "Unavailable For Legal Reasons")`.
+
 
 Installing
 ----------
