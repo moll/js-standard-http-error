@@ -38,6 +38,10 @@ describe("HttpError", function() {
       new HttpError(404).message.must.equal("Not Found")
     })
 
+    it("must set message from code given null", function() {
+      new HttpError(404, null).message.must.equal("Not Found")
+    })
+
     it("must set message from constant name", function() {
       new HttpError("NOT_FOUND").message.must.equal("Not Found")
     })
@@ -63,6 +67,13 @@ describe("HttpError", function() {
 
     it("must set code and properties", function() {
       var err = new RemoteError(404, {url: "/dunno"})
+      err.code.must.equal(404)
+      err.message.must.equal("Not Found")
+      err.url.must.equal("/dunno")
+    })
+
+    it("must set code and properties given null message", function() {
+      var err = new RemoteError(404, null, {url: "/dunno"})
       err.code.must.equal(404)
       err.message.must.equal("Not Found")
       err.url.must.equal("/dunno")
