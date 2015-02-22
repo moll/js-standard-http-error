@@ -1,7 +1,7 @@
 {
 	"name": "standard-http-error",
 	"version": "0.0.0",
-	"description": "Standard HTTP Error class. Proper serialization, no bloat. Extensible.",
+	"description": "Standard HTTP error class. Proper serialization, no bloat. Extensible.",
 	"keywords": [
 		"error",
 		"errors",
