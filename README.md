@@ -84,7 +84,7 @@ You can access the given `session` property then as `err.session`.
 
 
 ### Subclassing StandardHttpError
-If you wish to add your own functionality to StandardHttpError, subclass it as:
+If you wish to add your own functionality to StandardHttpError, subclass it:
 
 ```javascript
 var HttpError = require("standard-http-error")
