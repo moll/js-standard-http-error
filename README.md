@@ -90,7 +90,7 @@ If you wish to add your own functionality to StandardHttpError, subclass it:
 var HttpError = require("standard-http-error")
 
 function RemoteError(res) {
-  HttpError.call(res.statusCode, res.statusMessage)
+  HttpError.call(this, res.statusCode, res.statusMessage)
 }
 
 RemoteError.prototype = Object.create(HttpError.prototype, {
