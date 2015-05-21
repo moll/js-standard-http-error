@@ -35,8 +35,8 @@ HttpError.prototype.toString = function() {
 }
 
 for (var code in STATUS_CODE_TO_NAME) {
-	var name = STATUS_CODE_TO_NAME[code]
-	exports[name.replace("'", "").replace(/[- ]/g, "_").toUpperCase()] = +code
+  var name = STATUS_CODE_TO_NAME[code]
+  exports[name.replace("'", "").replace(/[- ]/g, "_").toUpperCase()] = +code
 }
 
 function alias(name) {
