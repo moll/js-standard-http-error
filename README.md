@@ -153,9 +153,9 @@ use for comparison and in `switch` statements.
 HttpError.NOT_FOUND // => 404
 ```
 
-The names are generated automatically from Node.js's `Http.STATUS_CODES` object
-during run-time, so they'll always be up to date. Here's the list for reference
-as of Node v0.11:
+When running on Node.js, the names are generated during run-time from
+`Http.STATUS_CODES`, so they'll always be up to date. Here's the list for
+reference as of Node v0.12:
 
 Code  | Name
 ------|-----

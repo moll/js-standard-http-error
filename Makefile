@@ -25,6 +25,9 @@ constants:
 		for (var name in ERRORS) console.log("`%d` | `%s`", ERRORS[name], name) \
 	'
 
+codes.json: .FORCE
+	node -e 'console.log(JSON.stringify(require("./codes"), null, "\t"))' > "$@"
+
 publish:
 	npm publish
 
@@ -39,3 +42,4 @@ clean:
 .PHONY: test spec autotest autospec
 .PHONY: pack publish tag
 .PHONY: clean
+.PHONY: .FORCE

@@ -30,6 +30,10 @@
 	"main": "index.js",
 	"scripts": {"test": "make test"},
 
+	"browser": {
+		"./codes.js": "./codes.json"
+	},
+
 	"dependencies": {
 		"standard-error": ">= 1.1.0 < 2"
 	},
