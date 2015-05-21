@@ -1,4 +1,4 @@
-## Unreleased
+## 1.1.0 (May 21, 2015)
 - Adds support for use in the browser by adding a cached copy of status codes.  
   For example, use StandardHttpError.js with
   [Browserify](https://github.com/substack/node-browserify).
