@@ -1,7 +1,7 @@
+exports = module.exports = HttpError
 var StandardError = require("standard-error")
-var STATUS_CODE_TO_NAME = require("http").STATUS_CODES
-var STATUS_NAME_TO_CODE = require("http-codes")
-module.exports = HttpError
+var STATUS_CODE_TO_NAME = require("./codes")
+var STATUS_NAME_TO_CODE = exports
 
 function HttpError(code, msg, props) {
   if (typeof code == "string") code = STATUS_NAME_TO_CODE[code]
@@ -14,8 +14,6 @@ function HttpError(code, msg, props) {
 HttpError.prototype = Object.create(Error.prototype, {
   constructor: {value: HttpError, configurable: true, writable: true}
 })
-
-assign(HttpError, STATUS_NAME_TO_CODE)
 
 Object.defineProperties(HttpError.prototype, {
   statusCode: alias("code"),
@@ -36,9 +34,9 @@ HttpError.prototype.toString = function() {
   return this.name + ": " + this.code + " " + this.message
 }
 
-function assign(target, source) {
-  for (var key in source) target[key] = source[key]
-  return target
+for (var code in STATUS_CODE_TO_NAME) {
+	var name = STATUS_CODE_TO_NAME[code]
+	exports[name.replace("'", "").replace(/[- ]/g, "_").toUpperCase()] = +code
 }
 
 function alias(name) {

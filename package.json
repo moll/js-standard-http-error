@@ -31,13 +31,13 @@
 	"scripts": {"test": "make test"},
 
 	"dependencies": {
-		"http-codes": ">= 1.0.0 < 2",
 		"standard-error": ">= 1.1.0 < 2"
 	},
 
 	"devDependencies": {
 		"mocha": ">= 2.1.0 < 3",
 		"must": ">= 0.12.0 < 0.13",
-		"objectware": ">= 1.6.0 < 2"
+		"objectware": ">= 1.6.0 < 2",
+		"http-codes": ">= 1.0.0 < 2"
 	}
 }
