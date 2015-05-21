@@ -1,4 +1,4 @@
-var Ow = require("objectware")
+var $ = require("oolong")
 var STATUS_NAMES = require("http-codes")
 var HttpError = require("..")
 
@@ -158,7 +158,7 @@ describe("HttpError", function() {
     STATUS_NAMES.must.have.property("NOT_FOUND", 404)
     STATUS_NAMES.must.have.property("INTERNAL_SERVER_ERROR", 500)
 
-    Ow.each(STATUS_NAMES, function(code, constant) {
+    $.each(STATUS_NAMES, function(code, constant) {
       it("must have " + constant + " equal " + code, function() {
         HttpError[constant].must.equal(code)
       })
