@@ -1,4 +1,4 @@
-## Unreleased
+## 1.1.1 (Jun 4, 2015)
 - Sets HttpError's name as a property on its prototype for when the code gets
   minified and the constructor name is changed.
 
