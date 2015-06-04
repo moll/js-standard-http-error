@@ -1,7 +1,6 @@
 StandardHttpError.js
 ====================
-[![NPM version][npm-badge]](http://badge.fury.io/js/standard-http-error)
-[npm-badge]: https://badge.fury.io/js/standard-http-error.png
+[![NPM version][npm-badge]](https://www.npmjs.com/package/standard-http-error)
 
 **StandardHttpError.js** is a very simple but useful **error class** for
 JavaScript and Node.js that represents HTTP errors. You can then detect it with
@@ -10,6 +9,8 @@ JavaScript and Node.js that represents HTTP errors. You can then detect it with
 You can use StandardHttpError.js with any error code you like, standardized or
 not. They don't have to exist beforehand, so if you're living on the cutting
 edge, feel free to use `new HttpError(451, "Unavailable For Legal Reasons")`.
+
+[npm-badge]: https://img.shields.io/npm/v/standard-http-error.svg
 
 
 Installing
