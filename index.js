@@ -15,6 +15,9 @@ HttpError.prototype = Object.create(Error.prototype, {
   constructor: {value: HttpError, configurable: true, writable: true}
 })
 
+// Set name explicitly for when the code gets minified.
+HttpError.prototype.name = "HttpError"
+
 Object.defineProperties(HttpError.prototype, {
   statusCode: alias("code"),
   statusMessage: alias("message"),
