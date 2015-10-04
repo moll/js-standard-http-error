@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.0 (Oct 4, 2015)
 - Restores status code names and constants to pre Node v4 times (Node v0.12) for
   backwards compatibility.  Will release StandardHttpError.js v2 briefly with
   Node v4's names and constants.
