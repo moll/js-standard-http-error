@@ -49,8 +49,7 @@ prints your errors out if you don't handle them), StandardHttpError.js also sets
 
 ### Creating a new instance by error name
 StandardHttpError.js also supports passing a constant name instead of the error
-code. Constant names are taken from Node.js's `Http` module's `STATUS_CODES`
-object so they'll always be up to date.
+code.
 
 ```javascript
 new HttpError("NOT_FOUND")
@@ -154,9 +153,11 @@ use for comparison and in `switch` statements.
 HttpError.NOT_FOUND // => 404
 ```
 
-When running on Node.js, the names are generated during run-time from
-`Http.STATUS_CODES`, so they'll always be up to date. Here's the list for
-reference as of Node v0.12:
+When running on Node.js, cached status codes and their names get merged with new
+codes from `Http.STATUS_CODES`. Existing status codes will not be changed
+without bumping StandardHttpError.js's major version number. That is, after
+upgrading to Node v4, StandardHttpError.js v1 still gave you Node v0.12's
+constants.
 
 Code  | Name
 ------|-----
@@ -171,6 +172,8 @@ Code  | Name
 `205` | `RESET_CONTENT`
 `206` | `PARTIAL_CONTENT`
 `207` | `MULTI_STATUS`
+`208` | `ALREADY_REPORTED`
+`226` | `IM_USED`
 `300` | `MULTIPLE_CHOICES`
 `301` | `MOVED_PERMANENTLY`
 `302` | `MOVED_TEMPORARILY`
@@ -198,6 +201,7 @@ Code  | Name
 `416` | `REQUESTED_RANGE_NOT_SATISFIABLE`
 `417` | `EXPECTATION_FAILED`
 `418` | `IM_A_TEAPOT`
+`421` | `MISDIRECTED_REQUEST`
 `422` | `UNPROCESSABLE_ENTITY`
 `423` | `LOCKED`
 `424` | `FAILED_DEPENDENCY`
@@ -214,6 +218,7 @@ Code  | Name
 `505` | `HTTP_VERSION_NOT_SUPPORTED`
 `506` | `VARIANT_ALSO_NEGOTIATES`
 `507` | `INSUFFICIENT_STORAGE`
+`508` | `LOOP_DETECTED`
 `509` | `BANDWIDTH_LIMIT_EXCEEDED`
 `510` | `NOT_EXTENDED`
 `511` | `NETWORK_AUTHENTICATION_REQUIRED`

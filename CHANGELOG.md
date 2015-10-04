@@ -1,4 +1,17 @@
 ## Unreleased
+- Restores status code names and constants to pre Node v4 times (Node v0.12) for
+  backwards compatibility.  Will release StandardHttpError.js v2 briefly with
+  Node v4's names and constants.
+
+- Adds new status codes and constants from Node v4:
+
+  Code  | Name
+  ------|-----
+  `208` | `ALREADY_REPORTED`
+  `226` | `IM_USED`
+  `421` | `MISDIRECTED_REQUEST`
+  `508` | `LOOP_DETECTED`
+
 - Makes `StandardHttpError` inherit from `StandardError` so you could more
   easily differentiate between bugs (usually thrown as `TypeError`,
   `SyntaxError` et al.) from user-facing errors that you've intentionally

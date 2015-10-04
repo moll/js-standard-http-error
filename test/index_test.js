@@ -1,6 +1,8 @@
 var O = require("oolong")
-var STATUS_NAMES = require("http-codes")
 var HttpError = require("..")
+var isVersion = require("semver").satisfies.bind(null, process.version)
+var describeNodeV012 = isVersion(">= 0.12 < 0.13") ? describe : xdescribe
+var describeNodeV4 = isVersion(">= 4 < 5") ? describe : xdescribe
 
 function RemoteError(code, msg) { HttpError.apply(this, arguments) }
 
@@ -154,13 +156,53 @@ describe("HttpError", function() {
   })
 
   describe("HTTP status codes", function() {
-    // Fail safes:
-    STATUS_NAMES.must.have.property("NOT_FOUND", 404)
-    STATUS_NAMES.must.have.property("INTERNAL_SERVER_ERROR", 500)
+    it("must have NOT_FOUND equal 404", function() {
+      HttpError.must.have.property("NOT_FOUND", 404)
+    })
 
-    O.each(STATUS_NAMES, function(code, constant) {
-      it("must have " + constant + " equal " + code, function() {
-        HttpError[constant].must.equal(code)
+    it("must have INTERNAL_SERVER_ERROR equal 500", function() {
+      HttpError.must.have.property("INTERNAL_SERVER_ERROR", 500)
+    })
+
+    describeNodeV012("when on Node v0.12", function() {
+      var STATUS_NAMES = require("http-codes")
+
+      // Fail safes:
+      STATUS_NAMES.must.have.property("NOT_FOUND", 404)
+      STATUS_NAMES.must.have.property("INTERNAL_SERVER_ERROR", 500)
+
+      O.each(STATUS_NAMES, function(code, name) {
+        it("must have " + name + " equal " + code, function() {
+          HttpError[name].must.equal(code)
+        })
+      })
+    })
+
+    describeNodeV4("when on Node v4", function() {
+      O.each({
+        MOVED_TEMPORARILY: 302, // => FOUND
+        REQUEST_TIME_OUT: 408, // => REQUEST_TIMEOUT
+        REQUEST_ENTITY_TOO_LARGE: 413, // => PAYLOAD_TOO_LARGE
+        REQUEST_URI_TOO_LARGE: 414, // => URI_TOO_LONG
+        REQUESTED_RANGE_NOT_SATISFIABLE: 416, // => RANGE_NOT_SATISFIABLE
+        GATEWAY_TIME_OUT: 504 // => GATEWAY_TIMEOUT
+      }, function(code, name) {
+        it("must have " + name + " equal " + code, function() {
+          HttpError[name].must.equal(code)
+        })
+      })
+
+      O.each({
+        302: "Moved Temporarily",
+        408: "Request Time-out",
+        413: "Request Entity Too Large",
+        414: "Request-URI Too Large",
+        416: "Requested Range Not Satisfiable",
+        504: "Gateway Time-out"
+      }, function(name, code) {
+        it("must have " + name + " equal " + code, function() {
+          new HttpError(Number(code)).message.must.equal(name)
+        })
       })
     })
   })
