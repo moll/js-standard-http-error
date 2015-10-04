@@ -1,3 +1,15 @@
+## Unreleased
+- Updates HTTP status codes and constants from Node v4:
+
+  Code  | Old Name                          | New Name
+  ------|-----------------------------------|---------
+  `302` | `MOVED_TEMPORARILY`               | `FOUND`
+  `408` | `REQUEST_TIME_OUT`                | `REQUEST_TIMEOUT`
+  `413` | `REQUEST_ENTITY_TOO_LARGE`        | `PAYLOAD_TOO_LARGE`
+  `414` | `REQUEST_URI_TOO_LARGE`           | `URI_TOO_LONG`
+  `416` | `REQUESTED_RANGE_NOT_SATISFIABLE` | `RANGE_NOT_SATISFIABLE`
+  `504` | `GATEWAY_TIME_OUT`                | `GATEWAY_TIMEOUT`
+
 ## 1.2.0 (Oct 4, 2015)
 - Restores status code names and constants to pre Node v4 times (Node v0.12) for
   backwards compatibility.  Will release StandardHttpError.js v2 briefly with

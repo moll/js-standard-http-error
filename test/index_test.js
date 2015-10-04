@@ -1,7 +1,6 @@
 var O = require("oolong")
 var HttpError = require("..")
 var isVersion = require("semver").satisfies.bind(null, process.version)
-var describeNodeV012 = isVersion(">= 0.12 < 0.13") ? describe : xdescribe
 var describeNodeV4 = isVersion(">= 4 < 5") ? describe : xdescribe
 
 function RemoteError(code, msg) { HttpError.apply(this, arguments) }
@@ -164,7 +163,13 @@ describe("HttpError", function() {
       HttpError.must.have.property("INTERNAL_SERVER_ERROR", 500)
     })
 
-    describeNodeV012("when on Node v0.12", function() {
+    // Changed between Node v0.12 and Node v4.
+    it("must have FOUND equal 302", function() {
+      HttpError.must.have.property("FOUND", 302)
+      new HttpError(302).message.must.equal("Found")
+    })
+
+    describeNodeV4("when on Node v4", function() {
       var STATUS_NAMES = require("http-codes")
 
       // Fail safes:
@@ -174,34 +179,6 @@ describe("HttpError", function() {
       O.each(STATUS_NAMES, function(code, name) {
         it("must have " + name + " equal " + code, function() {
           HttpError[name].must.equal(code)
-        })
-      })
-    })
-
-    describeNodeV4("when on Node v4", function() {
-      O.each({
-        MOVED_TEMPORARILY: 302, // => FOUND
-        REQUEST_TIME_OUT: 408, // => REQUEST_TIMEOUT
-        REQUEST_ENTITY_TOO_LARGE: 413, // => PAYLOAD_TOO_LARGE
-        REQUEST_URI_TOO_LARGE: 414, // => URI_TOO_LONG
-        REQUESTED_RANGE_NOT_SATISFIABLE: 416, // => RANGE_NOT_SATISFIABLE
-        GATEWAY_TIME_OUT: 504 // => GATEWAY_TIMEOUT
-      }, function(code, name) {
-        it("must have " + name + " equal " + code, function() {
-          HttpError[name].must.equal(code)
-        })
-      })
-
-      O.each({
-        302: "Moved Temporarily",
-        408: "Request Time-out",
-        413: "Request Entity Too Large",
-        414: "Request-URI Too Large",
-        416: "Requested Range Not Satisfiable",
-        504: "Gateway Time-out"
-      }, function(name, code) {
-        it("must have " + name + " equal " + code, function() {
-          new HttpError(Number(code)).message.must.equal(name)
         })
       })
     })
