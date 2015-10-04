@@ -1,4 +1,4 @@
-## Unreleased
+## 2.0.0 (Oct 4, 2015)
 - Updates HTTP status codes and constants from Node v4:
 
   Code  | Old Name                          | New Name
