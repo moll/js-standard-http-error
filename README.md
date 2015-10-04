@@ -1,6 +1,7 @@
 StandardHttpError.js
 ====================
 [![NPM version][npm-badge]](https://www.npmjs.com/package/standard-http-error)
+[![Build status][travis-badge]](https://travis-ci.org/moll/js-standard-http-error)
 
 **StandardHttpError.js** is a very simple but useful **error class** for
 JavaScript and Node.js that represents HTTP errors. You can then detect it with
@@ -11,6 +12,7 @@ not. They don't have to exist beforehand, so if you're living on the cutting
 edge, feel free to use `new HttpError(451, "Unavailable For Legal Reasons")`.
 
 [npm-badge]: https://img.shields.io/npm/v/standard-http-error.svg
+[travis-badge]: https://travis-ci.org/moll/js-standard-http-error.png?branch=master
 
 
 Installing
