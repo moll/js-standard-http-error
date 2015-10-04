@@ -1,3 +1,32 @@
+## Unreleased
+- Makes `StandardHttpError` inherit from `StandardError` so you could more
+  easily differentiate between bugs (usually thrown as `TypeError`,
+  `SyntaxError` et al.) from user-facing errors that you've intentionally
+  thrown. If all of your custom errors inherit from `StandardError`
+  ([StandardError.js](https://github.com/moll/js-standard-error)), this will
+  come in handy.
+
+  ```javascript
+  var StandardError = require("standard-error")
+  var HttpError = require("standard-http-error")
+
+  function magic(n) {
+    if (isNaN(n)) throw new TypeError("Bug! Should never be NaN!")
+    if (n <= 0) throw new HttpError(422, "Think positively!")
+    // ...
+  }
+
+  try { magic(42) }
+  catch (ex) {
+    if (ex instanceof StandardError) console.error("Uh-oh: " + ex.message)
+    else throw ex
+  }
+  ```
+
+  Make sure your dependencies have been deduped (see `npm dedupe`) to ensure
+  a single `StandardError` instance (needed for `instanceof` to work) across
+  your whole app.
+
 ## 1.1.1 (Jun 4, 2015)
 - Sets HttpError's name as a property on its prototype for when the code gets
   minified and the constructor name is changed.
