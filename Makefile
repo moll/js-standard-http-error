@@ -27,7 +27,7 @@ constants:
 	'
 
 codes.json: .FORCE
-	$(NODE) -e 'console.log(JSON.stringify(require("./codes"), null, "\t"))' > "$@"
+	$(NODE) -e 'console.log(JSON.stringify(require("http").STATUS_CODES, null, "\t"))' > "$@"
 
 publish:
 	npm publish
