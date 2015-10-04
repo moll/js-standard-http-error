@@ -5,7 +5,8 @@ StandardHttpError.js
 
 **StandardHttpError.js** is a very simple but useful **error class** for
 JavaScript and Node.js that represents HTTP errors. You can then detect it with
-`instanceof` in error handling middleware and act accordingly.
+`instanceof` in error handling middleware and act accordingly. Also works in the
+browser through [Browserify](http://browserify.org).
 
 You can use StandardHttpError.js with any error code you like, standardized or
 not. They don't have to exist beforehand, so if you're living on the cutting
@@ -157,9 +158,8 @@ HttpError.NOT_FOUND // => 404
 
 When running on Node.js, cached status codes and their names get merged with new
 codes from `Http.STATUS_CODES`. Existing status codes will not be changed
-without bumping StandardHttpError.js's major version number. That is, after
-upgrading to Node v4, StandardHttpError.js v1 still gave you Node v0.12's
-constants.
+without bumping StandardHttpError.js's major version number. That ensures
+consistent constants in Node and in the browser.
 
 Code  | Name
 ------|-----
