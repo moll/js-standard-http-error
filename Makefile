@@ -1,9 +1,32 @@
+export PATH:=$(PWD)/node_modules/.bin:$(PATH)
+
 NODE = node
 NODE_OPTS =
 TEST_OPTS =
 
-love:
-	@echo "Feel like makin' love."
+
+all: \
+	dist/standard-http-error.js \
+	dist/standard-http-error.min.js \
+	dist/standard-http-error.min.js.map \
+
+dist/standard-http-error.js: \
+	index.js \
+
+	@mkdir -p $(@D)
+	browserify $< --standalone HttpError > $@
+
+
+dist/%.min.js: \
+	dist/%.js \
+
+	@mkdir -p $(@D)
+	( cd $(@D) ; uglifyjs $(<F) --source-map $(@F).map --output $(@F) )
+
+dist/%.min.js.map: \
+	dist/%.min.js \
+
+
 
 test:
 	@$(NODE) $(NODE_OPTS) ./node_modules/.bin/_mocha -R dot $(TEST_OPTS)
@@ -29,17 +52,19 @@ constants:
 codes.json: .FORCE
 	$(NODE) -e 'console.log(JSON.stringify(require("http").STATUS_CODES, null, "\t"))' > "$@"
 
-publish:
+publish: \
+	all \
+
 	npm publish
 
 tag:
 	git tag "v$$($(NODE) -e 'console.log(require("./package").version)')"
 
 clean:
+	rm -rf dist/
 	rm -f *.tgz
-	npm prune --production
 
-.PHONY: love
+.PHONY: all
 .PHONY: test spec autotest autospec
 .PHONY: pack publish tag
 .PHONY: clean
