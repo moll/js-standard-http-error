@@ -3,7 +3,9 @@ var HttpError = require("..")
 var isVersion = require("semver").satisfies.bind(null, process.version)
 var describeNodeV4 = isVersion(">= 4 < 5") ? describe : xdescribe
 
-function RemoteError(code, msg) { HttpError.apply(this, arguments) }
+function RemoteError(code, msg, props) {
+	HttpError.call(this, code, msg, props)
+}
 
 RemoteError.prototype = Object.create(HttpError.prototype, {
   constructor: {value: RemoteError, configurable: true, writeable: true}
@@ -20,11 +22,11 @@ describe("HttpError", function() {
     })
 
     it("must throw TypeError given undefined code", function() {
-      !function() { new HttpError(undefined) }.must.throw(TypeError, /HTTP/)
+      (function() { new HttpError(undefined) }).must.throw(TypeError, /HTTP/)
     })
 
     it("must throw TypeError given null code", function() {
-      !function() { new HttpError(null) }.must.throw(TypeError, /HTTP/)
+      (function() { new HttpError(null) }).must.throw(TypeError, /HTTP/)
     })
 
     it("must set code from constant name", function() {
@@ -32,7 +34,7 @@ describe("HttpError", function() {
     })
 
     it("must throw TypeError given unknown constant", function() {
-      !function() { new HttpError("DUNNO") }.must.throw(TypeError, /HTTP/)
+      (function() { new HttpError("DUNNO") }).must.throw(TypeError, /HTTP/)
     })
 
     it("must set message from code", function() {
