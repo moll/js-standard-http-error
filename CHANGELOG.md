@@ -1,4 +1,4 @@
-## Unreleased
+## 2.0.1 (Sep 12, 2017)
 - Removes a trailing comma for old Internet Explorer compatibility.
 
 ## 2.0.0 (Oct 4, 2015)
