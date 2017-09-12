@@ -1,3 +1,6 @@
+## Unreleased
+- Removes a trailing comma for old Internet Explorer compatibility.
+
 ## 2.0.0 (Oct 4, 2015)
 - Updates HTTP status codes and constants from Node v4:
 

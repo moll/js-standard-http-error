@@ -46,6 +46,6 @@ function alias(name) {
   return {
     configurable: true,
     get: function() { return this[name] },
-    set: function(value) { return this[name] = value },
+    set: function(value) { return this[name] = value }
   }
 }
